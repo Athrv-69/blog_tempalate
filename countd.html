@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .timer {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .time {
+            font-size: 50px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="timer">
+        <h1>Countdown Timer</h1>
+        <div class="time" id="countdown">10:00</div>
+        <button onclick="startTimer()">Start Timer</button>
+    </div>
+
+    <script>
+        let time = 600; // 10 minutes in seconds
+        let timer;
+
+        function startTimer() {
+            if (timer) clearInterval(timer); // Clear any existing timer
+
+            timer = setInterval(function() {
+                time--;
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+
+                document.getElementById('countdown').innerText = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+                if (time <= 0) {
+                    clearInterval(timer);
+                    alert("Time's up!");
+                }
+            }, 1000); // Update every second
+        }
+    </script>
+
+</body>
+</html>
